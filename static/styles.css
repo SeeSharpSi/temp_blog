@@ -1,0 +1,17 @@
+:root {
+  background-color: #191724; /* rosePine base */
+}
+* {
+  color: #e0def4; /* rosePine text */
+}
+.topNav {
+  background-color: rgb(38, 35, 58);
+  overflow: hidden;
+  padding: 12px;
+  margin: 0 0 8px 0;
+}
+.topNav a {
+  text-align: center;
+  margin: 4px;
+  cursor: pointer;
+}

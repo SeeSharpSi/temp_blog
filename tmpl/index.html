@@ -7,10 +7,21 @@
   </head>
   <body>
     <div class="topNav" hx-boost="true">
-      <a hx-put="/home" hx-push-url="true" hx-target="#main">Home</a>
-      <a hx-put="/posts" hx-push-url="true" hx-target="#main">Posts</a>
+      <a hx-put="/home" hx-push-url="true" hx-target="#main">Home </a>
+      <a
+        hx-put="/posts"
+        hx-indicator="#indicator"
+        hx-push-url="true"
+        hx-target="#main"
+        >Posts</a
+      >
       <a hx-put="/pictures" hx-push-url="true" hx-target="#main">Pictures</a>
     </div>
     <div id="main"></div>
+    <img
+      id="indicator"
+      class="htmx-indicator"
+      src="https://i.gifer.com/ZZ5H.gif"
+    />
   </body>
 </html>

@@ -42,15 +42,6 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func GetPictures(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("got /pictures request\n")
-	if r.Header.Get("Hx-Request") == "" {
-		http.Redirect(w, r, "/", http.StatusSeeOther)
-	} else {
-		http.ServeFile(w, r, "tmpl/pictures.html")
-	}
-}
-
 func GetPosts(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("got /posts request\n")
 	tmpl, err := template.ParseFiles("tmpl/posts.html")
@@ -73,6 +64,15 @@ func GetPosts(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 	} else {
 		tmpl.Execute(w, Posts)
+	}
+}
+
+func GetPictures(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("got /pictures request\n")
+	if r.Header.Get("Hx-Request") == "" {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+	} else {
+		http.ServeFile(w, r, "tmpl/pictures.html")
 	}
 }
 

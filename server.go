@@ -3,18 +3,23 @@ package main
 import (
 	routes "blog/main/routing"
 	"errors"
+	"flag"
 	"fmt"
 	"net/http"
 	"os"
+	"strconv"
 	"sync"
 )
 
 func main() {
 	var wg sync.WaitGroup
-	port := "127.0.0.1:42069"
+    port := flag.Int("port", 42069, "port for localhost")
+    flag.Parse()
+    port_value := *port
+	ip := "127.0.0.1:" + strconv.Itoa(port_value)
 	wg.Add(1)
-	go runServer(port, &wg)
-	fmt.Printf("Server running on %s\n", port)
+	go runServer(ip, &wg)
+	fmt.Printf("Server running on %s\n", ip)
 	wg.Wait()
 }
 

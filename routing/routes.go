@@ -25,6 +25,8 @@ func StartHandlers() *http.ServeMux {
 	mux.HandleFunc("/home", GetHome)
 	mux.HandleFunc("/posts", GetPosts)
 	mux.HandleFunc("/pictures", GetPictures)
+	mux.HandleFunc("/form", GetForm)
+	mux.HandleFunc("/form_html", GetForm_html)
 	return mux
 }
 
@@ -64,6 +66,28 @@ func GetPosts(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 	} else {
 		tmpl.Execute(w, Posts)
+	}
+}
+
+func GetForm_html(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("got /form_html request\n")
+	if r.Header.Get("Hx-Request") == "" {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+	} else {
+		http.ServeFile(w, r, "tmpl/form.html")
+	}
+}
+
+func GetForm(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("got /form request\n")
+	if r.Header.Get("Hx-Request") == "" {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+	} else {
+		fname := r.URL.Query().Get("fname")
+		lname := r.URL.Query().Get("lname")
+		fmt.Printf("\nfname => %s\nlname => %s\n", fname, lname)
+		_, err := w.Write([]byte("<button hx-get='/form_html' hx-swap='outerHTML'>New Form</button>"))
+		check(err)
 	}
 }
 

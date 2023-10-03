@@ -1,5 +1,16 @@
 package templ
 
-templ Hello(name string) {
-    <div hx-put="/test">Howdy, { name }!</div>
+templ Index() {
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test</title>
+        <link rel="stylesheet" type="text/css" href="static/styles.css" />
+        <script type="text/javascript" src="static/htmx.min.js"></script>
+    </head>
+    <body>
+    @Nav_Bar()
+        <div hx-get="/test" hx-target="this" hx-swap="outerHTML">testing</div>
+    </body>
+</html>
 }

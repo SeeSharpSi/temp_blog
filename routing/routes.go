@@ -4,7 +4,6 @@ import (
 	"blog/main/tmpl"
 	"context"
 	"fmt"
-	"io"
 	"net/http"
 )
 
@@ -22,23 +21,24 @@ func check(e error) {
 func StartHandlers() *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", GetIndex)
-	mux.HandleFunc("/test", GetTest)
-	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+    mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	mux.HandleFunc("/posts", GetPosts)
 	return mux
 }
 
 func GetIndex(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("got / request\n")
-    http.ServeFile(w, r, "tmpl/index.html")
+    component := templ.Index()
+    component.Render(context.Background(), w)
 }
 
-func GetTest(w http.ResponseWriter, r *http.Request) {
-    fmt.Printf("got /test request\n")
-    component := templ.Test("working")
+func GetPosts(w http.ResponseWriter, r *http.Request) {
+    fmt.Printf("got /posts request\n")
+    temp := []string{"one", "two", "three"}
+    component := templ.Posts(temp)
     component.Render(context.Background(), w)
 }
 
 func ServeStatic(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("got /static request\n")
-	io.WriteString(w, `<div hx-put="/hello" hx-swap="outerHTML">hello</div>`)
 }

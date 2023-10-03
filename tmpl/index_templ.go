@@ -9,7 +9,7 @@ import "context"
 import "io"
 import "bytes"
 
-func Hello(name string) templ.Component {
+func Index() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
 		templBuffer, templIsBuffer := w.(*bytes.Buffer)
 		if !templIsBuffer {
@@ -22,26 +22,42 @@ func Hello(name string) templ.Component {
 			var_1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, err = templBuffer.WriteString("<div hx-put=\"/test\">")
+		_, err = templBuffer.WriteString("<!doctype html><html><head><title>")
 		if err != nil {
 			return err
 		}
-		var_2 := `Howdy, `
+		var_2 := `Test`
 		_, err = templBuffer.WriteString(var_2)
 		if err != nil {
 			return err
 		}
-		var var_3 string = name
-		_, err = templBuffer.WriteString(templ.EscapeString(var_3))
+		_, err = templBuffer.WriteString("</title><link rel=\"stylesheet\" type=\"text/css\" href=\"static/styles.css\"><script type=\"text/javascript\" src=\"static/htmx.min.js\">")
 		if err != nil {
 			return err
 		}
-		var_4 := `!`
+		var_3 := ``
+		_, err = templBuffer.WriteString(var_3)
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString("</script></head><body>")
+		if err != nil {
+			return err
+		}
+		err = Nav_Bar().Render(ctx, templBuffer)
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString("<div hx-get=\"/test\" hx-target=\"this\" hx-swap=\"outerHTML\">")
+		if err != nil {
+			return err
+		}
+		var_4 := `testing`
 		_, err = templBuffer.WriteString(var_4)
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</div>")
+		_, err = templBuffer.WriteString("</div></body></html>")
 		if err != nil {
 			return err
 		}

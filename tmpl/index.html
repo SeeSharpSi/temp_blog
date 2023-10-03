@@ -6,6 +6,6 @@
     <script type="text/javascript" src="static/htmx.min.js"></script>
   </head>
   <body>
-      <div>hello world</div>
+      <div hx-get="/test" hx-target="this" hx-swap="outerHTML">testing</div>
   </body>
 </html>

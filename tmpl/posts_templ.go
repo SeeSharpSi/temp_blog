@@ -31,7 +31,7 @@ func Posts(temp []types.Post) templ.Component {
 			return err
 		}
 		for _, v := range temp {
-			_, err = templBuffer.WriteString("<div class=\"post\" hx-get=\"")
+			_, err = templBuffer.WriteString("<div class=\"post\" hx-target=\"#page\" hx-swap=\"outerHTML\" hx-get=\"")
 			if err != nil {
 				return err
 			}

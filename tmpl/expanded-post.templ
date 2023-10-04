@@ -1,0 +1,10 @@
+package templ
+
+import "strconv"
+
+templ ExpandedPost(id int) {
+	<div id="page">
+		this post has id 
+		{ strconv.Itoa(id) }
+	</div>
+}

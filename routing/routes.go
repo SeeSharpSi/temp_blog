@@ -6,6 +6,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/go-chi/chi/v5"
@@ -34,6 +35,7 @@ func StartHandlers() *chi.Mux {
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	r.Get("/posts", GetPosts)
 	r.Get("/home", GetHome)
+    r.Get("/post/{postId}", GetPost)
 	return r
 }
 
@@ -86,4 +88,12 @@ func GetPosts(w http.ResponseWriter, r *http.Request) {
 		component = templ.Posts(posts)
 		component.Render(context.Background(), w)
 	}
+}
+
+func GetPost(w http.ResponseWriter, r *http.Request) {
+    postId := chi.URLParam(r, "postId")
+    intPostId, err := strconv.Atoi(postId)
+    check(err)
+    component := templ.ExpandedPost(intPostId)
+    component.Render(context.Background(), w)
 }

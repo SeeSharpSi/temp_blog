@@ -13,7 +13,7 @@ import (
 
 func main() {
 	var wg sync.WaitGroup
-    port := flag.Int("port", 3000, "port for localhost")
+    port := flag.Int("port", 4000, "port for localhost")
     flag.Parse()
     port_value := *port
 	ip := "127.0.0.1:" + strconv.Itoa(port_value)

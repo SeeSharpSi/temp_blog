@@ -48,16 +48,7 @@ func Index() templ.Component {
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("<div hx-get=\"/test\" hx-target=\"this\" hx-swap=\"outerHTML\">")
-		if err != nil {
-			return err
-		}
-		var_4 := `testing`
-		_, err = templBuffer.WriteString(var_4)
-		if err != nil {
-			return err
-		}
-		_, err = templBuffer.WriteString("</div></body></html>")
+		_, err = templBuffer.WriteString("</body></html>")
 		if err != nil {
 			return err
 		}

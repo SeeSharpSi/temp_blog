@@ -2,9 +2,9 @@ package templ
 
 templ Nav_Bar() {
     <div class="topNav">
-    <a hx-boost="true" hx-put="/home">Home</a>
-    <a hx-boost="true" hx-put="/posts">Posts</a>
-    <a hx-boost="true" hx-put="/pictures">Pictures</a>
+    <a hx-push-url="true" hx-target="#page" hx-swap="outerHTML" hx-boost="true" hx-get="/home">Home</a>
+    <a hx-push-url="true" hx-target="#page" hx-swap="outerHTML" hx-boost="true" hx-get="/posts">Posts</a>
+    <a hx-push-url="true" hx-target="#page" hx-swap="outerHTML" hx-boost="true" hx-get="/pictures">Pictures</a>
     </div>
 }
 

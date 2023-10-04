@@ -9,7 +9,9 @@ import "context"
 import "io"
 import "bytes"
 
-func Posts(temp []string) templ.Component {
+import types "blog/main/types"
+
+func Posts(temp []types.Post) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
 		templBuffer, templIsBuffer := w.(*bytes.Buffer)
 		if !templIsBuffer {
@@ -22,20 +24,37 @@ func Posts(temp []string) templ.Component {
 			var_1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
+		_, err = templBuffer.WriteString("<div id=\"page\">")
+		if err != nil {
+			return err
+		}
 		for _, v := range temp {
-			_, err = templBuffer.WriteString("<div>")
+			_, err = templBuffer.WriteString("<div class=\"post\"><div class=\"title\">")
 			if err != nil {
 				return err
 			}
-			var var_2 string = v
+			var var_2 string = v.Title
 			_, err = templBuffer.WriteString(templ.EscapeString(var_2))
 			if err != nil {
 				return err
 			}
-			_, err = templBuffer.WriteString("</div>")
+			_, err = templBuffer.WriteString("</div><div class=\"content\">")
 			if err != nil {
 				return err
 			}
+			var var_3 string = v.Content
+			_, err = templBuffer.WriteString(templ.EscapeString(var_3))
+			if err != nil {
+				return err
+			}
+			_, err = templBuffer.WriteString("</div></div>")
+			if err != nil {
+				return err
+			}
+		}
+		_, err = templBuffer.WriteString("</div>")
+		if err != nil {
+			return err
 		}
 		if !templIsBuffer {
 			_, err = templBuffer.WriteTo(w)

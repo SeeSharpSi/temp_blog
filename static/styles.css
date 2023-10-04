@@ -8,15 +8,49 @@
   color: #e0def4; /* rosePine text */
 }
 
+body {
+    margin: 0;
+}
+
 .topNav {
   background-color: rgb(38, 35, 58);
+  display: flex;
   overflow: hidden;
   padding: 12px;
-  top: 0;
+  margin-top: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 .topNav a {
   text-align: center;
   margin: 4px;
   cursor: pointer;
+}
+
+#page {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    place-items: center;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    outline: 2px solid #ebbcba;
+    margin: 16px;
+    border-radius: 4px;
+    width: 30vw;
+}
+
+.post .title {
+    text-align: center;
+    background-color: #1f1d2e;
+    margin-top: 0;
+    padding: 8px;
+}
+
+.post .content {
+    padding: 8px;
 }

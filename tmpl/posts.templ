@@ -1,11 +1,13 @@
 package templ
 
+import "strconv"
+
 import types "blog/main/types"
 
 templ Posts(temp []types.Post) {
     <div id="page">
     for _, v := range temp {
-        <div class="post">
+        <div class="post" hx-get={ "/post/" + strconv.Itoa(v.Id) }>
         <div class="title">{ v.Title }</div>
         <div class="content">{ v.Content }</div>
         </div>

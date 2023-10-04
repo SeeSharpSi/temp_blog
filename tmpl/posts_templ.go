@@ -9,6 +9,8 @@ import "context"
 import "io"
 import "bytes"
 
+import "strconv"
+
 import types "blog/main/types"
 
 func Posts(temp []types.Post) templ.Component {
@@ -29,7 +31,15 @@ func Posts(temp []types.Post) templ.Component {
 			return err
 		}
 		for _, v := range temp {
-			_, err = templBuffer.WriteString("<div class=\"post\"><div class=\"title\">")
+			_, err = templBuffer.WriteString("<div class=\"post\" hx-get=\"")
+			if err != nil {
+				return err
+			}
+			_, err = templBuffer.WriteString(templ.EscapeString("/post/" + strconv.Itoa(v.Id)))
+			if err != nil {
+				return err
+			}
+			_, err = templBuffer.WriteString("\"><div class=\"title\">")
 			if err != nil {
 				return err
 			}

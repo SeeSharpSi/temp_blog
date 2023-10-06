@@ -22,7 +22,7 @@ func Nav_Bar() templ.Component {
 			var_1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, err = templBuffer.WriteString("<div class=\"topNav\"><a hx-push-url=\"true\" hx-target=\"#page\" hx-swap=\"outerHTML\" hx-boost=\"true\" hx-get=\"/home\">")
+		_, err = templBuffer.WriteString("<div class=\"topNav\"><div hx-push-url=\"true\" hx-target=\"#page\" hx-swap=\"outerHTML\" hx-boost=\"true\" hx-get=\"/home\">")
 		if err != nil {
 			return err
 		}
@@ -31,7 +31,7 @@ func Nav_Bar() templ.Component {
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</a><a hx-push-url=\"true\" hx-target=\"#page\" hx-swap=\"outerHTML\" hx-boost=\"true\" hx-get=\"/posts\">")
+		_, err = templBuffer.WriteString("</div><div hx-push-url=\"true\" hx-target=\"#page\" hx-swap=\"outerHTML\" hx-boost=\"true\" hx-get=\"/posts\">")
 		if err != nil {
 			return err
 		}
@@ -40,7 +40,7 @@ func Nav_Bar() templ.Component {
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</a><a hx-push-url=\"true\" hx-target=\"#page\" hx-swap=\"outerHTML\" hx-boost=\"true\" hx-get=\"/pictures\">")
+		_, err = templBuffer.WriteString("</div><div hx-push-url=\"true\" hx-target=\"#page\" hx-swap=\"outerHTML\" hx-boost=\"true\" hx-get=\"/pictures\">")
 		if err != nil {
 			return err
 		}
@@ -49,7 +49,7 @@ func Nav_Bar() templ.Component {
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</a></div>")
+		_, err = templBuffer.WriteString("</div></div>")
 		if err != nil {
 			return err
 		}

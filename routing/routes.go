@@ -35,7 +35,7 @@ func StartHandlers() *chi.Mux {
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	r.Get("/posts", GetPosts)
 	r.Get("/home", GetHome)
-    r.Get("/post/{postId}", GetPost)
+	r.Get("/post/{postId}", GetPost)
 	return r
 }
 
@@ -46,7 +46,7 @@ func GetIndex(w http.ResponseWriter, r *http.Request) {
 
 func GetHome(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("got /home request\n")
-    header := r.Header
+	header := r.Header
 	if header.Clone().Get("Hx-Request") == "true" {
 		component := templ.Home("Silas")
 		component.Render(context.Background(), w)
@@ -55,7 +55,7 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 		component.Render(context.Background(), w)
 		component = templ.Home("Silas")
 		component.Render(context.Background(), w)
-    }
+	}
 }
 
 func GetPosts(w http.ResponseWriter, r *http.Request) {
@@ -64,17 +64,17 @@ func GetPosts(w http.ResponseWriter, r *http.Request) {
 		{
 			Title:   "title one",
 			Content: "content one",
-            Id: 1,
+			Id:      1,
 		},
 		{
 			Title:   "title two",
 			Content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            Id: 2,
+			Id:      2,
 		},
 		{
 			Title:   "title three",
 			Content: "content three",
-            Id: 3,
+			Id:      3,
 		},
 	}
 	header := r.Header
@@ -91,9 +91,19 @@ func GetPosts(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetPost(w http.ResponseWriter, r *http.Request) {
-    postId := chi.URLParam(r, "postId")
-    intPostId, err := strconv.Atoi(postId)
-    check(err)
-    component := templ.ExpandedPost(intPostId)
-    component.Render(context.Background(), w)
+	postId := chi.URLParam(r, "postId")
+	header := r.Header
+	intPostId, err := strconv.Atoi(postId)
+	if header.Clone().Get("Hx-Request") == "true" {
+        fmt.Println("HX!!")
+		component := templ.ExpandedPost(intPostId)
+		component.Render(context.Background(), w)
+	} else {
+        fmt.Println("NOT HX!!")
+		component := templ.Index()
+		component.Render(context.Background(), w)
+		component = templ.ExpandedPost(intPostId)
+		component.Render(context.Background(), w)
+	}
+	check(err)
 }

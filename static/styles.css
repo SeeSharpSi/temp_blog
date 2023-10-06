@@ -16,16 +16,19 @@ body {
   background-color: rgb(38, 35, 58);
   display: flex;
   overflow: hidden;
-  padding: 12px;
   margin-top: 0;
   align-items: center;
   justify-content: center;
 }
 
-.topNav a {
+.topNav div {
+  padding: 16px;
   text-align: center;
-  margin: 4px;
   cursor: pointer;
+}
+
+.topNav div:hover {
+    background-color: #21202e;
 }
 
 #page {

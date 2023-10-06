@@ -31,7 +31,7 @@ func Index() templ.Component {
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</title><link rel=\"stylesheet\" type=\"text/css\" href=\"static/styles.css\"><script type=\"text/javascript\" src=\"static/htmx.min.js\">")
+		_, err = templBuffer.WriteString("</title><link rel=\"stylesheet\" type=\"text/css\" href=\"/static/styles.css\"><script type=\"text/javascript\" src=\"/static/htmx.min.js\">")
 		if err != nil {
 			return err
 		}

@@ -9,7 +9,7 @@ templ Posts(temp []types.Post) {
 		for _, v := range temp {
 			<div class="post" hx-push-url="true" hx-target="#page" hx-swap="outerHTML" hx-get={ "/post/" + strconv.Itoa(v.Id) }>
 				<div class="title">{ v.Title }</div>
-				<div class="content">{ v.Content }</div>
+				<div class="content">{ v.Teaser }</div>
 			</div>
 		}
 	</div>

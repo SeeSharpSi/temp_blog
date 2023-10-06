@@ -52,7 +52,7 @@ func Posts(temp []types.Post) templ.Component {
 			if err != nil {
 				return err
 			}
-			var var_3 string = v.Content
+			var var_3 string = v.Teaser
 			_, err = templBuffer.WriteString(templ.EscapeString(var_3))
 			if err != nil {
 				return err

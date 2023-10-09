@@ -64,7 +64,6 @@ func GetPosts(w http.ResponseWriter, r *http.Request) {
     var posts []types.Post
     posts = sql_funcs.Get_Posts()
 	header := r.Header
-	fmt.Println(header)
 	if header.Clone().Get("Hx-Request") == "true" {
 		component := templ.Posts(posts)
 		component.Render(context.Background(), w)

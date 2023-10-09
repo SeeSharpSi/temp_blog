@@ -67,9 +67,10 @@ func adding_post() {
 	teaser, err := reader.ReadString('\n')
 	check(err)
 	teaser = strings.Replace(teaser, "\n", "", -1)
-	fmt.Println("Content (relative file location): ")
-	//content_file_location, err := reader.ReadString('\n')
-    file, err := os.ReadFile("temp.txt")
+	fmt.Println("Content (relative cli location): ")
+	content_file_location, err := reader.ReadString('\n')
+    content_file_location = content_file_location[:len(content_file_location)-1]
+    file, err := os.ReadFile(content_file_location)
     check(err)
     var buf bytes.Buffer
     err = goldmark.Convert(file, &buf)

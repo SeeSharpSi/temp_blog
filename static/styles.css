@@ -42,6 +42,7 @@ body {
     flex-direction: column;
     place-items: center;
     margin-top: 8px;
+    margin-bottom: 16px;
 }
 
 .post {
@@ -74,12 +75,13 @@ body {
 #post-title {
     user-select: none;
     background-color: rgb(110, 106, 134, 1);
-    padding: 8px;
-    margin-top: 32px;
+    margin-top: 0;
     margin-bottom: 0;
     width: 100%;
     display: flex;
     flex-direction: row;
+    padding: 8px 40px;
+    align-self: center;
 }
 
 #post-title .title {
@@ -91,9 +93,27 @@ body {
     margin-left: auto;
 }
 
+#post-title + p {
+    width: fit-content;
+    padding: 8px;
+    margin-top: 16px;
+    background-color: rgba(235, 111, 146, 1);
+    border-radius: 20px;
+    margin-left: 0;
+}
+
 .expanded-post {
     justify-content: left;
-    margin: 0 30vw;
+    background-color: #191724;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    padding: 0 40px;
+    border-left: 1px solid rgb(110, 106, 134, 1);
+    border-right: 1px solid rgb(110, 106, 134, 1);
+    border-bottom: 1px solid rgb(110, 106, 134, 1);
+    margin-top: 8px;
+    padding-bottom: 32px;
 }
 
 .expanded-post h1 {
@@ -101,16 +121,16 @@ body {
     color: #9ccfd8;
     width: fit-content;
     padding: 8px;
-    margin-bottom: 0;
-    margin-top: 40px;
+    margin-bottom: 8px;
+    margin-top: 32px;
 }
 
 .expanded-post p {
-    margin-left: 8px;
+    margin: 8px 16px 0 16px;
 }
 
 .expanded-post blockquote > p {
-    margin-left: 0;
+    margin: 0;
 }
 
 .expanded-post a {
@@ -126,4 +146,6 @@ blockquote {
     padding-left: 8px;
     border-left: 2px solid #eb6f92;
     margin-left: 24px;
+    background-color: #1f1d2e;
+    padding-bottom: 4px;
 }

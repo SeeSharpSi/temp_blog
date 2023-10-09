@@ -26,7 +26,7 @@ func Index() templ.Component {
 		if err != nil {
 			return err
 		}
-		var_2 := `Test`
+		var_2 := `Howdy`
 		_, err = templBuffer.WriteString(var_2)
 		if err != nil {
 			return err

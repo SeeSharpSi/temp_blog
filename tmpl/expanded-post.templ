@@ -2,9 +2,13 @@ package templ
 
 import "strconv"
 
-templ ExpandedPost(id int) {
+import types "blog/main/types"
+
+templ ExpandedPost(post types.Post) {
 	<div id="page">
-		this post has id 
-		{ strconv.Itoa(id) }
+        <div class="expanded-post">
+            <h1 id="post-title"><div class="title">{ post.Title }</div><div class="id">Post { strconv.Itoa(post.Id) }</div></h1>
+            @Unsafe(post.Content)
+        </div>
 	</div>
 }

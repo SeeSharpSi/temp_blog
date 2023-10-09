@@ -80,15 +80,14 @@ func GetPost(w http.ResponseWriter, r *http.Request) {
 	postId := chi.URLParam(r, "postId")
 	header := r.Header
 	intPostId, err := strconv.Atoi(postId)
+    post := sql_funcs.Get_Post(intPostId)
 	if header.Clone().Get("Hx-Request") == "true" {
-        fmt.Println("HX!!")
-		component := templ.ExpandedPost(intPostId)
+		component := templ.ExpandedPost(post)
 		component.Render(context.Background(), w)
 	} else {
-        fmt.Println("NOT HX!!")
 		component := templ.Index()
 		component.Render(context.Background(), w)
-		component = templ.ExpandedPost(intPostId)
+		component = templ.ExpandedPost(post)
 		component.Render(context.Background(), w)
 	}
 	check(err)

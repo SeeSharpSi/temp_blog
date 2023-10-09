@@ -4,6 +4,7 @@ import (
 	sql_funcs "blog/main/db"
 	routes "blog/main/routing"
 	"bufio"
+	"bytes"
 	"errors"
 	"flag"
 	"fmt"
@@ -12,6 +13,8 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+
+	"github.com/yuin/goldmark"
 )
 
 func check(e error) {
@@ -22,7 +25,7 @@ func check(e error) {
 
 func main() {
 	var wg sync.WaitGroup
-	port := flag.Int("port", 1234, "port for localhost")
+	port := flag.Int("port", 9779, "port for localhost")
 	add_post := flag.Bool("ap", false, "add a post")
 	flag.Parse()
 	if *add_post {
@@ -64,9 +67,13 @@ func adding_post() {
 	teaser, err := reader.ReadString('\n')
 	check(err)
 	teaser = strings.Replace(teaser, "\n", "", -1)
-	fmt.Println("Content: ")
-	content, err := reader.ReadString('\n')
-	check(err)
-	content = strings.Replace(content, "\n", "", -1)
+	fmt.Println("Content (relative file location): ")
+	//content_file_location, err := reader.ReadString('\n')
+    file, err := os.ReadFile("temp.txt")
+    check(err)
+    var buf bytes.Buffer
+    err = goldmark.Convert(file, &buf)
+    check(err)
+    content := buf.String()
 	sql_funcs.Add_Post(title, teaser, content)
 }

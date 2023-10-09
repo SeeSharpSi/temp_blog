@@ -11,7 +11,9 @@ import "bytes"
 
 import "strconv"
 
-func ExpandedPost(id int) templ.Component {
+import types "blog/main/types"
+
+func ExpandedPost(post types.Post) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
 		templBuffer, templIsBuffer := w.(*bytes.Buffer)
 		if !templIsBuffer {
@@ -24,25 +26,38 @@ func ExpandedPost(id int) templ.Component {
 			var_1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, err = templBuffer.WriteString("<div id=\"page\">")
+		_, err = templBuffer.WriteString("<div id=\"page\"><div class=\"expanded-post\"><h1 id=\"post-title\"><div class=\"title\">")
 		if err != nil {
 			return err
 		}
-		var_2 := `this post has id `
-		_, err = templBuffer.WriteString(var_2)
+		var var_2 string = post.Title
+		_, err = templBuffer.WriteString(templ.EscapeString(var_2))
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString(" ")
+		_, err = templBuffer.WriteString("</div><div class=\"id\">")
 		if err != nil {
 			return err
 		}
-		var var_3 string = strconv.Itoa(id)
-		_, err = templBuffer.WriteString(templ.EscapeString(var_3))
+		var_3 := `Post `
+		_, err = templBuffer.WriteString(var_3)
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</div>")
+		var var_4 string = strconv.Itoa(post.Id)
+		_, err = templBuffer.WriteString(templ.EscapeString(var_4))
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString("</div></h1>")
+		if err != nil {
+			return err
+		}
+		err = Unsafe(post.Content).Render(ctx, templBuffer)
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString("</div></div>")
 		if err != nil {
 			return err
 		}

@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"os/signal"
 	"strconv"
 	"strings"
 	"sync"
@@ -46,9 +47,15 @@ func runServer(port string, wg *sync.WaitGroup) {
 		Addr:    port,
 		Handler: mux,
 	}
+    c := make(chan os.Signal, 1)
+    signal.Notify(c,os.Interrupt)
+    go func() {
+        s := <-c
+        server.Close()
+        fmt.Println(s)
+    }()
 	err := server.ListenAndServe()
 	defer server.Close()
-	defer fmt.Println("Closed server")
 	if errors.Is(err, http.ErrServerClosed) {
 		fmt.Printf("server closed\n")
 	} else if err != nil {

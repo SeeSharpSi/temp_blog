@@ -34,6 +34,7 @@ func StartHandlers() *chi.Mux {
 	r.Use(middleware.Timeout(60 * time.Second))
 	r.Get("/", GetIndex)
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	r.Handle("/img/*", http.StripPrefix("/img/", http.FileServer(http.Dir("img"))))
 	r.Get("/posts", GetPosts)
 	r.Get("/home", GetHome)
 	r.Get("/post/{postId}", GetPost)
@@ -49,12 +50,12 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("got /home request\n")
 	header := r.Header
 	if header.Clone().Get("Hx-Request") == "true" {
-		component := templ.Home("Silas")
+		component := templ.Home()
 		component.Render(context.Background(), w)
 	} else {
 		component := templ.Index()
 		component.Render(context.Background(), w)
-		component = templ.Home("Silas")
+		component = templ.Home()
 		component.Render(context.Background(), w)
 	}
 }

@@ -9,7 +9,7 @@ import "context"
 import "io"
 import "bytes"
 
-func Home(name string) templ.Component {
+func Home() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
 		templBuffer, templIsBuffer := w.(*bytes.Buffer)
 		if !templIsBuffer {
@@ -22,21 +22,34 @@ func Home(name string) templ.Component {
 			var_1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, err = templBuffer.WriteString("<div id=\"page\"><div>")
+		_, err = templBuffer.WriteString("<div id=\"page\"><img id=\"pfp\" alt=\"cool picture of silas\" src=\"/img/pfp.jpg\"><div class=\"left\">")
 		if err != nil {
 			return err
 		}
-		var_2 := `Hello, `
+		var_2 := `^ me`
 		_, err = templBuffer.WriteString(var_2)
 		if err != nil {
 			return err
 		}
-		var var_3 string = name
-		_, err = templBuffer.WriteString(templ.EscapeString(var_3))
+		_, err = templBuffer.WriteString("</div><h1 class=\"yellow-title\">")
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</div></div>")
+		var_3 := `lolzero javascript`
+		_, err = templBuffer.WriteString(var_3)
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString("</h1><p class=\"home-text\">")
+		if err != nil {
+			return err
+		}
+		var_4 := `this page was written in Go and HTMX. No JavaScript, no frameworks; this is how the web should be.`
+		_, err = templBuffer.WriteString(var_4)
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString("</p></div>")
 		if err != nil {
 			return err
 		}

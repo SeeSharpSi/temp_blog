@@ -13,7 +13,6 @@ import (
 	"os/signal"
 	"strconv"
 	"strings"
-	"sync"
 
 	"github.com/yuin/goldmark"
 )
@@ -25,7 +24,6 @@ func check(e error) {
 }
 
 func main() {
-	var wg sync.WaitGroup
 	port := flag.Int("port", 9779, "port for localhost")
 	add_post := flag.Bool("ap", false, "add a post")
 	flag.Parse()
@@ -33,34 +31,27 @@ func main() {
 		adding_post()
 	} else {
 		ip := "127.0.0.1:" + strconv.Itoa(*port)
-		wg.Add(1)
-		go runServer(ip, &wg)
 		fmt.Printf("Server running on %s\n", ip)
-		wg.Wait()
-	}
-}
-
-func runServer(port string, wg *sync.WaitGroup) {
-	defer wg.Done()
-	mux := routes.StartHandlers()
-	server := http.Server{
-		Addr:    port,
-		Handler: mux,
-	}
-    c := make(chan os.Signal, 1)
-    signal.Notify(c,os.Interrupt)
-    go func() {
-        s := <-c
-        server.Close()
-        fmt.Println(s)
-    }()
-	err := server.ListenAndServe()
-	defer server.Close()
-	if errors.Is(err, http.ErrServerClosed) {
-		fmt.Printf("server closed\n")
-	} else if err != nil {
-		fmt.Printf("error starting server: %s\n", err)
-		os.Exit(1)
+        mux := routes.StartHandlers()
+        server := http.Server{
+            Addr:    ip,
+            Handler: mux,
+        }
+        c := make(chan os.Signal, 1)
+        signal.Notify(c,os.Interrupt)
+        go func() {
+            s := <-c
+            server.Close()
+            fmt.Println(s)
+        }()
+        err := server.ListenAndServe()
+        defer server.Close()
+        if errors.Is(err, http.ErrServerClosed) {
+            fmt.Printf("server closed\n")
+        } else if err != nil {
+            fmt.Printf("error starting server: %s\n", err)
+            os.Exit(1)
+        }
 	}
 }
 

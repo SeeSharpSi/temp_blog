@@ -44,7 +44,7 @@ func Home() templ.Component {
 		if err != nil {
 			return err
 		}
-		var_4 := `this page was written in Go and HTMX. No JavaScript, no frameworks; this is how the web should be.`
+		var_4 := `this page was written in Go and HTMX. No reliance on JavaScript, no reliance on frameworks; this is how the web should be.`
 		_, err = templBuffer.WriteString(var_4)
 		if err != nil {
 			return err

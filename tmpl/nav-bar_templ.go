@@ -26,7 +26,7 @@ func Nav_Bar() templ.Component {
 		if err != nil {
 			return err
 		}
-		var_2 := `Home`
+		var_2 := `[Home]`
 		_, err = templBuffer.WriteString(var_2)
 		if err != nil {
 			return err
@@ -35,7 +35,7 @@ func Nav_Bar() templ.Component {
 		if err != nil {
 			return err
 		}
-		var_3 := `Posts`
+		var_3 := `[Posts]`
 		_, err = templBuffer.WriteString(var_3)
 		if err != nil {
 			return err
@@ -44,7 +44,7 @@ func Nav_Bar() templ.Component {
 		if err != nil {
 			return err
 		}
-		var_4 := `Pictures`
+		var_4 := `[Pictures]`
 		_, err = templBuffer.WriteString(var_4)
 		if err != nil {
 			return err

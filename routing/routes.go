@@ -38,7 +38,12 @@ func StartHandlers() *chi.Mux {
 	r.Get("/posts", GetPosts)
 	r.Get("/home", GetHome)
 	r.Get("/post/{postId}", GetPost)
+	r.Get("/test", GetTest)
 	return r
+}
+
+func GetTest(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w, r, "tmpl/html/section1.html")
 }
 
 func GetIndex(w http.ResponseWriter, r *http.Request) {
@@ -69,7 +74,7 @@ func GetPosts(w http.ResponseWriter, r *http.Request) {
 		component := templ.Posts(posts)
 		component.Render(context.Background(), w)
 	} else {
-		component := templ.Index()
+        component := templ.Index()
 		component.Render(context.Background(), w)
 		component = templ.Posts(posts)
 		component.Render(context.Background(), w)

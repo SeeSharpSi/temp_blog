@@ -1,10 +1,17 @@
 package templ
 
 templ Home() {
-    <div id="page">
-    <img id="pfp" alt="cool picture of silas" src="/img/pfp.jpg"></img>
-    <div class="left">^ me</div>
-    <h1 class="yellow-title">lolzero javascript</h1>
-    <p class="home-text">this page was written in Go and HTMX. No reliance on JavaScript, no reliance on frameworks; this is how the web should be.</p>
-    </div>
+	<div id="page">
+		<img id="pfp" alt="cool picture of silas" src="/img/pfp.jpg"/>
+		<div class="left">^ me</div>
+		<div class="home-text-box">
+			<h1 class="yellow-title first">zero javascript</h1>
+			<p class="home-text">This page is the product of my frustration with JavaScript and the ecosystem around it. Rollup is being rebuilt in Rust, Bun was written in Zig, TypeScript added more ways to import modules, and NodeJS is still NodeJS. Devs are realizing JavaScript is an inefficient backend so they're developing ways to keep using it "but faster." Just make Protobufs good and call it a day, thanks.</p>
+			<h1 class="yellow-title">gopher language</h1>
+			<p class="home-text">Fast build times, good standard library, easy to read; Go is a solid choice for simple html servers (and more. But more on more later).</p>
+			<h1 class="yellow-title">htmx</h1>
+			<p class="home-text">The internet should be built like this. No, really. Hypermedia should have stayed and needs to come back.</p>
+		</div>
+	</div>
 }
+

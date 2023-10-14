@@ -34,7 +34,11 @@ body {
 
 .topNav div:hover {
     background-color: #21202e;
-    color: #9ccfd8;
+    color: #cbeff5;
+    /*
+    text-shadow:
+    0 0 2px #fff;
+    */
 }
 
 #page {
@@ -51,13 +55,33 @@ body {
     margin-top: 5vh;
 }
 
+.home-text-box {
+    width: 70vw;
+    margin-top: 8vh;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-items: left;
+}
+
 .yellow-title {
     width: 70vw;
     text-align: left;
-    color: #ffde69;
-    margin-top: 8vh;
+    color: #e9ebba;
     font-weight: bolder;
     font-size: 40px;
+    margin: 0;
+    margin-top: 10vh;
+}
+
+.yellow-title.first {
+    margin-top: 0;
+}
+
+.home-text {
+    text-align: left;
+    margin-left: 5vw;
+    width: 30vw;
 }
 
 /* i'm too lazy to rename this div */

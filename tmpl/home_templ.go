@@ -31,11 +31,11 @@ func Home() templ.Component {
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</div><h1 class=\"yellow-title\">")
+		_, err = templBuffer.WriteString("</div><div class=\"home-text-box\"><h1 class=\"yellow-title first\">")
 		if err != nil {
 			return err
 		}
-		var_3 := `lolzero javascript`
+		var_3 := `zero javascript`
 		_, err = templBuffer.WriteString(var_3)
 		if err != nil {
 			return err
@@ -44,12 +44,48 @@ func Home() templ.Component {
 		if err != nil {
 			return err
 		}
-		var_4 := `this page was written in Go and HTMX. No reliance on JavaScript, no reliance on frameworks; this is how the web should be.`
+		var_4 := `This page is the product of my frustration with JavaScript and the ecosystem around it. Rollup is being rebuilt in Rust, Bun was written in Zig, TypeScript added more ways to import modules, and NodeJS is still NodeJS. Devs are realizing JavaScript is an inefficient backend so they're developing ways to keep using it "but faster." Just make Protobufs good and call it a day, thanks.`
 		_, err = templBuffer.WriteString(var_4)
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</p></div>")
+		_, err = templBuffer.WriteString("</p><h1 class=\"yellow-title\">")
+		if err != nil {
+			return err
+		}
+		var_5 := `gopher language`
+		_, err = templBuffer.WriteString(var_5)
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString("</h1><p class=\"home-text\">")
+		if err != nil {
+			return err
+		}
+		var_6 := `Fast build times, good standard library, easy to read; Go is a solid choice for simple html servers (and more. But more on more later).`
+		_, err = templBuffer.WriteString(var_6)
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString("</p><h1 class=\"yellow-title\">")
+		if err != nil {
+			return err
+		}
+		var_7 := `htmx`
+		_, err = templBuffer.WriteString(var_7)
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString("</h1><p class=\"home-text\">")
+		if err != nil {
+			return err
+		}
+		var_8 := `The internet should be built like this. No, really. Hypermedia should have stayed and needs to come back.`
+		_, err = templBuffer.WriteString(var_8)
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString("</p></div></div>")
 		if err != nil {
 			return err
 		}

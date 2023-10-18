@@ -200,11 +200,12 @@ blockquote {
 
 #generateButton {
     font-size: 20px;
-    color: black;
-    background-color: #f6c177;
+    background-color: #26233a;
     cursor: pointer;
-    border: 2px solid black;
+    color: #f6c177;
+    border: 2px solid #ebbcba;
     box-shadow: 2px black;
+    border-radius: 4px;
 }
 
 #blank1, #blank2, #blank3 {
@@ -213,7 +214,7 @@ blockquote {
     text-align: center;
     background-color: #26233a;  
     color: #ebbcba;
-    border-radius: 5px;
+    border-radius: 4px;
     transition: background-color 0.3s;
 }
 

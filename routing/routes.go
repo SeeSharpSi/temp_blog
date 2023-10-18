@@ -36,6 +36,7 @@ func StartHandlers() *chi.Mux {
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	r.Handle("/img/*", http.StripPrefix("/img/", http.FileServer(http.Dir("img"))))
 	r.Get("/posts", GetPosts)
+	r.Get("/drama", GetDrama)
 	r.Get("/home", GetHome)
 	r.Get("/post/{postId}", GetPost)
 	r.Get("/test", GetTest)
@@ -77,6 +78,20 @@ func GetPosts(w http.ResponseWriter, r *http.Request) {
         component := templ.Index()
 		component.Render(context.Background(), w)
 		component = templ.Posts(posts)
+		component.Render(context.Background(), w)
+	}
+}
+
+func GetDrama(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("got /drama request\n")
+	header := r.Header
+	if header.Clone().Get("Hx-Request") == "true" {
+		component := templ.DramaGenerator()
+		component.Render(context.Background(), w)
+	} else {
+        component := templ.Index()
+		component.Render(context.Background(), w)
+		component = templ.DramaGenerator()
 		component.Render(context.Background(), w)
 	}
 }

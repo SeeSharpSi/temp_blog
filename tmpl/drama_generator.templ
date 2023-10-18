@@ -1,0 +1,42 @@
+package templ
+
+templ DramaGenerator() {
+	<div id="page">
+		<div class="container">
+			<div style="text-align: center;">
+				<p>Start drama with <span id="blank1">_____</span> about <span id="blank2">_____</span> and bring up <span id="blank3">_____</span></p>
+				<br/>
+				<button id="generateButton">Generate</button>
+			</div>
+		</div>
+	</div>
+    <script>
+        document.getElementById('generateButton').addEventListener('click', function() {
+            const a = ["Catholics", "Silas (either)", "Bapists", "your parents", "a pastor", "your Instagram story"];
+            const b = ["election", "church and state", "women pastors", "apple vs android", "the word 'yom'", "israel's role", "james 2:24"];
+            const c = ["'logical falacy'", "the reformation", "where in the bible...?", "Actually what you're refering to was considered untrue by the early church."];
+
+            shuffleWord(a, 'blank1', function() {
+                shuffleWord(b, 'blank2', function() {
+                    shuffleWord(c, 'blank3');
+                });
+            });
+        });
+
+        function shuffleWord(array, elementId, callback) {
+            const elem = document.getElementById(elementId);
+            let counter = 0;
+
+            const shuffleInterval = setInterval(function() {
+                elem.textContent = array[Math.floor(Math.random() * array.length)];
+                counter += 50; 
+
+                if (counter >= 1200) { 
+                    clearInterval(shuffleInterval);
+                    elem.textContent = array[Math.floor(Math.random() * array.length)];
+                    if (callback) callback();
+                }
+            }, 50);
+        }
+    </script>
+}

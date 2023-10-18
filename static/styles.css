@@ -15,10 +15,12 @@
 
 body {
     margin: 0;
+    font-size: 16px;
 }
 
 .topNav {
   background-color: rgb(38, 35, 58);
+  font-size: 20px;
   display: flex;
   overflow: hidden;
   margin-top: 0;
@@ -194,4 +196,31 @@ blockquote {
     margin-left: 24px;
     background-color: #1f1d2e;
     padding-bottom: 4px;
+}
+
+#generateButton {
+    font-size: 20px;
+    color: black;
+    background-color: #f6c177;
+    cursor: pointer;
+    border: 2px solid black;
+    box-shadow: 2px black;
+}
+
+#blank1, #blank2, #blank3 {
+    display: inline-block;  
+    width: 150px; 
+    text-align: center;
+    background-color: #26233a;  
+    color: #ebbcba;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.container {
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
 }

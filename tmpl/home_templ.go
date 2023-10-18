@@ -44,7 +44,7 @@ func Home() templ.Component {
 		if err != nil {
 			return err
 		}
-		var_4 := `Rollup is being rebuilt in Rust, Bun was written in Zig, TypeScript added more ways to import modules, and NodeJS is still NodeJS. We're doomed, which is why this site was built to avoid writing any JavaScript.`
+		var_4 := `Rollup is being rebuilt in Rust, Bun was written in Zig, TypeScript added more ways to import modules, and NodeJS is still NodeJS. We're doomed, which is why this site was built to avoid writing JavaScript.`
 		_, err = templBuffer.WriteString(var_4)
 		if err != nil {
 			return err

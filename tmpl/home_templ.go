@@ -44,7 +44,7 @@ func Home() templ.Component {
 		if err != nil {
 			return err
 		}
-		var_4 := `This page is the product of my frustration with JavaScript and the ecosystem around it. Rollup is being rebuilt in Rust, Bun was written in Zig, TypeScript added more ways to import modules, and NodeJS is still NodeJS. Devs are realizing JavaScript is an inefficient backend so they're developing ways to keep using it "but faster." Just make Protobufs good and call it a day, thanks.`
+		var_4 := `Rollup is being rebuilt in Rust, Bun was written in Zig, TypeScript added more ways to import modules, and NodeJS is still NodeJS. We're doomed, which is why this site was built to avoid writing any JavaScript.`
 		_, err = templBuffer.WriteString(var_4)
 		if err != nil {
 			return err
@@ -71,7 +71,7 @@ func Home() templ.Component {
 		if err != nil {
 			return err
 		}
-		var_7 := `htmx`
+		var_7 := `htmx & hypermedia`
 		_, err = templBuffer.WriteString(var_7)
 		if err != nil {
 			return err
@@ -80,7 +80,7 @@ func Home() templ.Component {
 		if err != nil {
 			return err
 		}
-		var_8 := `The internet should be built like this. No, really. Hypermedia should have stayed and needs to come back.`
+		var_8 := `The internet should be built like this. No, really. Clicking on something makes something happen, but that thing is 40mb smaller than React's something.`
 		_, err = templBuffer.WriteString(var_8)
 		if err != nil {
 			return err

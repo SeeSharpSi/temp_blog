@@ -67,7 +67,8 @@ body {
 .yellow-title {
     width: 70vw;
     text-align: left;
-    color: #e9ebba;
+    /*color: #e9ebba;*/
+    color: #ebbcba;
     font-weight: bolder;
     font-size: 40px;
     margin: 0;

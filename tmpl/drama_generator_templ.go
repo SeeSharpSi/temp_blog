@@ -91,9 +91,9 @@ func DramaGenerator() templ.Component {
 		}
 		var_9 := `
         document.getElementById('generateButton').addEventListener('click', function() {
-            const a = ["armineans", "Brian", "Catholics", "Silas (either)", "Bapists", "your parents", "a pastor", "your Instagram story", "your sibling(s)", "Methodists", "Calvilists"];
-            const b = ["God's soveriegn will", "martin luther", "did riley listen to the playlist", "firefox vs chrome", "election", "church and state", "women pastors", "apple vs android", "the word 'yom'", "israel's role", "james 2:24", "predestination", "end times", "tattoos", "gay", "are drummers musicians"];
-            const c = ["'logical falacy'", "the reformation", "where in the bible...?", "Actually what you're refering to was considered untrue by the early church.", "joel osteen"];
+            const a = ["Laravel Users", "DevOps"];
+            const b = ["Server-Side Rendering", "CLI vs GUI"];
+            const c = ["'i use vim btw'", "how slow/fast Python is"];
 
             shuffleWord(a, 'blank1', function() {
                 shuffleWord(b, 'blank2', function() {
